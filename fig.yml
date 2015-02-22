@@ -1,0 +1,41 @@
+nginx:
+  build: nginx
+  ports:
+    - "80:80"
+  links:
+    - elasticsearch
+    - graphite
+    - kibana
+#    - dashboard
+
+elasticsearch:
+  image: dockerfile/elasticsearch
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+  volumes:
+    - /opt/elasticsearch:/data
+
+graphite:
+  build: graphite
+  ports:
+    - "2003:2003"
+    - "2003:2003/udp"
+    - "2004:2004"
+    - "8125:8125/udp"
+    - "8126:8126"
+  volumes:
+    - /var/log/graphite:/var/log
+    - /opt/graphite/storage:/var/lib/graphite/storage
+
+mongometrics:
+  build: mongo-metrics
+  links:
+    - graphite
+
+kibana:
+  build: kibana
+  ports:
+    - "5601:5601"
+
+
