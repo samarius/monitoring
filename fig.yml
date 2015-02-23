@@ -29,12 +29,12 @@ graphite:
     - /opt/graphite/storage:/var/lib/graphite/storage
 
 mongometrics:
-  build: mongo-metrics
+  build: samarius/mongo-metrics
   links:
     - graphite
 
 kibana:
-  build: kibana
+  build: samarius/kibana
   ports:
     - "5601:5601"
 
