@@ -17,7 +17,7 @@ elasticsearch:
     - /opt/elasticsearch:/data
 
 graphite:
-  build: graphite
+  build: samarius/graphite
   ports:
     - "2003:2003"
     - "2003:2003/udp"
