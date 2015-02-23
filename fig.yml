@@ -1,5 +1,5 @@
 nginx:
-  build: nginx
+  image: samarius/nginx
   ports:
     - "80:80"
   links:
@@ -17,7 +17,7 @@ elasticsearch:
     - /opt/elasticsearch:/data
 
 graphite:
-  build: samarius/graphite
+  image: samarius/graphite
   ports:
     - "2003:2003"
     - "2003:2003/udp"
@@ -29,12 +29,12 @@ graphite:
     - /opt/graphite/storage:/var/lib/graphite/storage
 
 mongometrics:
-  build: samarius/mongo-metrics
+  image: samarius/mongo-metrics
   links:
     - graphite
 
 kibana:
-  build: samarius/kibana
+  image: samarius/kibana
   ports:
     - "5601:5601"
 
